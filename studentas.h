@@ -22,7 +22,8 @@ public:
     Studentas(); // numat konstr
     Studentas(const string &vardas, const string &pavarde,
               const vector<int> &nd, int egzaminas); // konstr su par
-    Studentas(const Studentas &kitas);               // kopijavimo konstruktorius   
+    Studentas(const Studentas &kitas);               // kopijavimo konstruktorius
+    Studentas &operator=(const Studentas &kitas);    // kopijavimo priskyrimas
 
     const string &vardas() const { return vardas_; }
     const string &pavarde() const { return pavarde_; }

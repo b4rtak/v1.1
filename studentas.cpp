@@ -38,6 +38,20 @@ Studentas::Studentas(const Studentas &kitas)
     : vardas_(kitas.vardas_), pavarde_(kitas.pavarde_), nd_(kitas.nd_),
       egzaminas_(kitas.egzaminas_), galVid_(kitas.galVid_), galMed_(kitas.galMed_) {}
 
+Studentas &Studentas::operator=(const Studentas &kitas)
+{
+    if (this != &kitas)
+    {
+        vardas_ = kitas.vardas_;
+        pavarde_ = kitas.pavarde_;
+        nd_ = kitas.nd_;
+        egzaminas_ = kitas.egzaminas_;
+        galVid_ = kitas.galVid_;
+        galMed_ = kitas.galMed_;
+    }
+    return *this;
+}
+
 void Studentas::skaiciuoti()
 {
     galVid_ = 0.4 * vidurkis(nd_) + 0.6 * egzaminas_;
