@@ -19,6 +19,7 @@ private:
     void skaiciuoti();
 
 public:
+    Studentas(); // numat konstr
     Studentas(const string &vardas, const string &pavarde,
               const vector<int> &nd, int egzaminas); // konstr su par
 

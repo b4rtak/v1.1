@@ -26,6 +26,7 @@ double mediana(vector<int> v)
     return v[n / 2];
 }
 
+Studentas::Studentas() : egzaminas_(0), galVid_(0), galMed_(0) {}
 Studentas::Studentas(const string &vardas, const string &pavarde,
                      const vector<int> &nd, int egzaminas)
     : vardas_(vardas), pavarde_(pavarde), nd_(nd), egzaminas_(egzaminas)
