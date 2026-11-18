@@ -34,6 +34,10 @@ Studentas::Studentas(const string &vardas, const string &pavarde,
     skaiciuoti();
 }
 
+Studentas::Studentas(const Studentas &kitas)
+    : vardas_(kitas.vardas_), pavarde_(kitas.pavarde_), nd_(kitas.nd_),
+      egzaminas_(kitas.egzaminas_), galVid_(kitas.galVid_), galMed_(kitas.galMed_) {}
+
 void Studentas::skaiciuoti()
 {
     galVid_ = 0.4 * vidurkis(nd_) + 0.6 * egzaminas_;
