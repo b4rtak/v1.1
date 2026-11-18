@@ -22,7 +22,8 @@ void meniu(Konteineris &studentai, mt19937 &gen)
     {
         cout << "\n1 - Ivesti studenta ranka\n2 - Generuoti pazymius atsitiktinai\n"
              << "3 - Rodyti rezultatus\n4 - Skaityti is failo\n"
-             << "5 - Sugeneruoti 5 failus\n6 - Testuoti sparta (vector ir list)\n0 - Baigti\nPasirinkimas: ";
+             << "5 - Sugeneruoti 5 failus\n6 - Testuoti sparta (vector ir list)\n"
+             << "7 - Struct ir class tyrimas (vector, 3 strategija)\n0 - Baigti\nPasirinkimas: ";
         int pas;
         if (!(cin >> pas))
         {
@@ -85,6 +86,11 @@ void meniu(Konteineris &studentai, mt19937 &gen)
                 cout << "\n=== LIST, " << strat << " strategija ===";
                 testas<list<Studentas>>(failas, k, strat);
             }
+        }
+        else if (pas == 7)
+        {
+            testas<vector<Studentas>>("gen100000.txt", 1, 3);
+            testas<vector<Studentas>>("gen1000000.txt", 1, 3);
         }
         else
             cout << "Tokio pasirinkimo nera!\n";
