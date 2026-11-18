@@ -39,7 +39,7 @@ void meniu(Konteineris &studentai, mt19937 &gen)
         {
             studentai.push_back(ivestiStudenta(pas == 2, gen));
             const Studentas &s = studentai.back();
-            cout << s.vardas << " " << s.pavarde << " " << fixed << setprecision(2) << s.galVid
+            cout << s.vardas() << " " << s.pavarde() << " " << fixed << setprecision(2) << s.galVid()
                  << " | adresas atmintyje: " << &s << "\n";
         }
         else if (pas == 3)
