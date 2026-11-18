@@ -24,6 +24,7 @@ public:
               const vector<int> &nd, int egzaminas); // konstr su par
     Studentas(const Studentas &kitas);               // kopijavimo konstruktorius
     Studentas &operator=(const Studentas &kitas);    // kopijavimo priskyrimas
+    ~Studentas();                                    // destruktorius
 
     const string &vardas() const { return vardas_; }
     const string &pavarde() const { return pavarde_; }

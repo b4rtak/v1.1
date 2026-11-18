@@ -52,6 +52,11 @@ Studentas &Studentas::operator=(const Studentas &kitas)
     return *this;
 }
 
+Studentas::~Studentas()
+{
+    nd_.clear();
+}   
+
 void Studentas::skaiciuoti()
 {
     galVid_ = 0.4 * vidurkis(nd_) + 0.6 * egzaminas_;
