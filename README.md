@@ -128,7 +128,7 @@ Rezultatų išvedimas į failą pagreitintas: vietoj daug << su setw kiekviena e
     cd kopija.git
     git remote set-url origin https://github.com/b4rtak/v1.1.git
     git push --mirror
-    
+
 ### Dalijimo į dvi grupes laikas
 
 | Įrašų | 1 str. vector | 1 str. list | 2 str. vector | 2 str. list | 3 str. vector | 3 str. list |
@@ -181,3 +181,34 @@ Bendras programos laikas beveik nepriklauso nuo strategijos, nes apie 75% laiko 
 ![3 strategija a](img/strategija3-a.png)
 
 ![3 strategija b](img/strategija3-b.png)
+
+
+## v1.1 struct ir class palyginimas
+
+Lyginama v1.0 (struct) ir v1.1 (class) programa: vector konteineris, 3 strategija (greičiausia), rūšiavimas pagal pavardę, failai su 100 000 ir 1 000 000 įrašų. Abiem versijoms naudoti tie patys failai, kiekvienas testas kartotas 3 kartus, lentelėse vidurkis sekundėmis. Kompiliuota su -O2.
+
+Testuota su MacBook Air M4, 16 GB RAM, SSD.
+
+### 1 000 000 įrašų
+
+| Etapas | struct | class |
+|---|---|---|
+| Nuskaitymas | 1.1567 | 1.2046 |
+| Dalijimas | 0.0072 | 0.0244 |
+| Rūšiavimas | 0.1222 | 0.2635 |
+| Išvedimas | 0.2452 | 0.1877 |
+| Iš viso | 1.5313 | 1.6801 |
+
+### 100 000 įrašų
+
+| Etapas | struct | class |
+|---|---|---|
+| Nuskaitymas | 0.1212 | 0.1253 |
+| Dalijimas | 0.0006 | 0.0020 |
+| Rūšiavimas | 0.0108 | 0.0220 |
+| Išvedimas | 0.0237 | 0.0202 |
+| Iš viso | 0.1563 | 0.1696 |
+
+Klasės versija apie 10% lėtesnė. Labiausiai skiriasi dalijimas (apie 3.4 karto lėčiau) ir rūšiavimas (apie 2.2 karto lėčiau). Abiejuose etapuose studentai keičiami vietomis (partition ir sort). Kai klasėje parašomas savo kopijavimo konstruktorius, priskyrimas ir destruktorius, kompiliatorius nebesukuria perkėlimo (move) konstruktoriaus ir priskyrimo, todėl objektai ne perkeliami, o kopijuojami. Be to, klasė saugo ND pažymius, nes jų keisti negalima, o struct versija juos ištrindavo, todėl kopijuoti reikia daugiau duomenų.
+
+Išvedimas klasės versijoje greitesnis, nes eilutė formuojama su snprintf ir įrašoma vienu kartu.
