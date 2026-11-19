@@ -232,3 +232,30 @@ Optimizavimo lygis beveik neturi įtakos greičiui, skirtumai mažesni nei 1%, t
 Failo dydis irgi beveik nesikeičia (skiriasi mažiau nei 1.5%). Su šiuo kompiliatoriumi (clang Mac'e) -O3 failas net šiek tiek mažesnis. Klasės versijos failas šiek tiek didesnis, nes joje daugiau funkcijų (konstruktoriai, priskyrimas, destruktorius, getteriai).
 
 Abiem atvejais su visais flag'ais struct versija yra greitesnė už class versiją.
+
+
+### Testų nuotraukos
+
+class -O1:
+
+![class -O1](img/class-01.png)
+
+class -O2:
+
+![class -O2](img/class-02.png)
+
+class -O3:
+
+![class -O3](img/class-03.png)
+
+struct -O1:
+
+![struct -O1](img/struct-01.png)
+
+struct -O2:
+
+![struct -O2](img/struct-02.png)
+
+struct -O3:
+
+![struct -O3](img/struct-03.png)
