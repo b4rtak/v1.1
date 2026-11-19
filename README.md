@@ -6,13 +6,13 @@ Objektinio programavimo užduotis. Programa skaičiuoja studentų galutinį bal�
 
 Reikia g++ kompiliatoriaus (Mac'e tinka clang, kuris ateina su Xcode Command Line Tools) ir make.
 
-    git clone https://github.com/b4rtak/v0.1.git
-    cd v0.1
-    git switch v1.0
+    git clone https://github.com/b4rtak/v1.1.git
+    cd v1.1
+    git switch v1.1
     make
     ./programa
 
-make sukompiliuoja programą pagal Makefile. Komanda make clean ištrina sukompiliuotą programą ir rezultatų failus.
+make sukompiliuoja programą pagal Makefile. Komanda make clean ištrina sukompiliuotą programą ir rezultatų failus. Optimizavimo lygį galima pakeisti, pvz. make clean && make OPT=-O3 (numatytasis yra -O2).
 
 Windows'e, jei make neįdiegtas, galima kompiliuoti tiesiogiai:
 
@@ -34,6 +34,8 @@ Paleidus programą reikia pasirinkti konteinerį: 1 - vector, 2 - list. Tada ats
 5 - sugeneruoti 5 testinius failus: gen1000.txt, gen10000.txt, gen100000.txt, gen1000000.txt ir gen10000000.txt.
 
 6 - greičio testas. Reikia pasirinkti rūšiavimo kriterijų ir dalijimo strategiją (1, 2 arba 3). Testuojami abu konteineriai su visais 5 failais, kiekvienas failas 3 kartus. Prieš tai failai turi būti sugeneruoti per 5 punktą. Vargšiukai įrašomi į vargsiukai.txt, kietiakai į kietiakiai.txt.
+
+7 - struct ir class tyrimas: vector, 3 strategija, failai gen100000.txt ir gen1000000.txt.
 
 0 - baigti.
 
@@ -112,6 +114,21 @@ Realizuotos 3 studentų dalijimo strategijos abiem konteineriams, pridėtas Make
 
 Testuota su MacBook Air M4, 16 GB RAM, SSD, macOS Tahoe 26.6.2. Testuota su anksčiau sugeneruotais failais, kiekvienas failas 3 kartus, laikai yra vidurkis sekundėmis. Rūšiuota pagal pavardę.
 
+### v1.1
+
+Struktūra Studentas pakeista klase. Duomenys (vardas, pavardė, ND, egzaminas ir galutiniai balai) dabar yra private, todėl nuskaityti jų iš išorės pakeisti negalima, galima tik perskaityti per getterius (vardas(), pavarde(), galVid() ir t.t.). Studentas sukuriamas konstruktoriumi, kuris iš karto apskaičiuoja galutinius balus, todėl objektas niekada nebūna neužpildytas. Visa studento sąsaja yra vienoje klasėje studentas.h faile.
+
+Klasėje realizuoti: numatytasis konstruktorius, konstruktorius su parametrais, kopijavimo konstruktorius, kopijavimo priskyrimo operatorius ir destruktorius.
+
+Rezultatų išvedimas į failą pagreitintas: vietoj daug << su setw kiekviena eilutė suformuojama su snprintf ir įrašoma vienu kartu.
+
+Ši versija yra naujoje repozitorijoje. Ji sukurta iš senosios, kad išliktų visa git istorija iki v1.0:
+
+    git clone --mirror https://github.com/b4rtak/v0.1.git kopija.git
+    cd kopija.git
+    git remote set-url origin https://github.com/b4rtak/v1.1.git
+    git push --mirror
+    
 ### Dalijimo į dvi grupes laikas
 
 | Įrašų | 1 str. vector | 1 str. list | 2 str. vector | 2 str. list | 3 str. vector | 3 str. list |
