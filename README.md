@@ -212,3 +212,23 @@ Testuota su MacBook Air M4, 16 GB RAM, SSD.
 Klasės versija apie 10% lėtesnė. Labiausiai skiriasi dalijimas (apie 3.4 karto lėčiau) ir rūšiavimas (apie 2.2 karto lėčiau). Abiejuose etapuose studentai keičiami vietomis (partition ir sort). Kai klasėje parašomas savo kopijavimo konstruktorius, priskyrimas ir destruktorius, kompiliatorius nebesukuria perkėlimo (move) konstruktoriaus ir priskyrimo, todėl objektai ne perkeliami, o kopijuojami. Be to, klasė saugo ND pažymius, nes jų keisti negalima, o struct versija juos ištrindavo, todėl kopijuoti reikia daugiau duomenų.
 
 Išvedimas klasės versijoje greitesnis, nes eilutė formuojama su snprintf ir įrašoma vienu kartu.
+
+
+## Optimizavimo flag'ų tyrimas
+
+Abi versijos sukompiliuotos su -O1, -O2 ir -O3. Laikas yra visos programos laikas (Iš viso), 3 testų vidurkis sekundėmis. Dydis yra sukompiliuoto programos failo dydis baitais.
+
+| Versija | Flag'as | 100 000 įrašų | 1 000 000 įrašų | Failo dydis (B) |
+|---|---|---|---|---|
+| struct | -O1 | 0.1571 | 1.5354 | 85 992 |
+| struct | -O2 | 0.1563 | 1.5313 | 85 752 |
+| struct | -O3 | 0.1552 | 1.5430 | 85 320 |
+| class | -O1 | 0.1720 | 1.6907 | 86 584 |
+| class | -O2 | 0.1696 | 1.6801 | 86 440 |
+| class | -O3 | 0.1715 | 1.6959 | 85 704 |
+
+Optimizavimo lygis beveik neturi įtakos greičiui, skirtumai mažesni nei 1%, todėl jie panašūs į matavimo paklaidą. Daugiausiai laiko užima failo nuskaitymas, kur dirba standartinės bibliotekos funkcijos (getline, istringstream), kurios jau yra sukompiliuotos ir mūsų flag'as jų neoptimizuoja.
+
+Failo dydis irgi beveik nesikeičia (skiriasi mažiau nei 1.5%). Su šiuo kompiliatoriumi (clang Mac'e) -O3 failas net šiek tiek mažesnis. Klasės versijos failas šiek tiek didesnis, nes joje daugiau funkcijų (konstruktoriai, priskyrimas, destruktorius, getteriai).
+
+Abiem atvejais su visais flag'ais struct versija yra greitesnė už class versiją.
